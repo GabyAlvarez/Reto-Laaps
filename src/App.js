@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment, useState} from 'react';
+import 'firebase/firestore';
+import 'firebase/auth';
+import Login from './components/login/Login';
+import CreateCount from './components/login/CreateCount';
+import Home from './components/home/Home';
+import { getUserStorage } from './Commons/userUtils'
+
 
 function App() {
+
+  const [haveAcount, setHaveAcount] = useState(false);
+  const [isLoggin, setIsLoggin] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      {
+        isLoggin ? <Home /> : haveAcount ? <Login setHaveAcount={setHaveAcount} setIsLoggin={setIsLoggin}/> : 
+        <CreateCount setHaveAcount={setHaveAcount} setIsLoggin={setIsLoggin}/> 
+      }
+
+    </Fragment>
   );
 }
-
 export default App;
