@@ -1,10 +1,11 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import 'firebase/firestore';
 import 'firebase/auth';
 import Login from './components/login/Login';
 import CreateCount from './components/login/CreateCount';
 import Home from './components/home/Home';
-import { getUserStorage } from './Commons/userUtils'
+import { getUserStorage } from './Commons/userUtils';
+import Navbar from './components/navbar/Navbar';
 
 
 function App() {
@@ -13,10 +14,12 @@ function App() {
   const [isLoggin, setIsLoggin] = useState(false);
 
   return (
+
     <Fragment>
+      <Navbar />
       {
-        isLoggin ? <Home /> : haveAcount ? <Login setHaveAcount={setHaveAcount} setIsLoggin={setIsLoggin}/> : 
-        <CreateCount setHaveAcount={setHaveAcount} setIsLoggin={setIsLoggin}/> 
+        isLoggin ? <Home /> : haveAcount ? <Login setHaveAcount={setHaveAcount} setIsLoggin={setIsLoggin} /> :
+          <CreateCount setHaveAcount={setHaveAcount} setIsLoggin={setIsLoggin} />
       }
 
     </Fragment>
