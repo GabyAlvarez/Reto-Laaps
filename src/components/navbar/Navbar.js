@@ -1,9 +1,9 @@
 import React from 'react';
 import { useFirebaseApp } from 'reactfire';
 import { useHistory } from "react-router-dom";
-//import 'materialize-css';
-//import 'materialize-css/dist/css/materialize.min.css';
-//import M from 'materialize-css/dist/js/materialize.min.js';
+import 'materialize-css';
+import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css/dist/js/materialize.min.js';
 
 
 const Navbar = () => {
@@ -11,10 +11,10 @@ const Navbar = () => {
     const firebase= useFirebaseApp();
     const history = useHistory();
 
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     var elems = document.querySelectorAll('.sidenav');
-    //     var instances = M.Sidenav.init(elems);
-    // });
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+    });
 
     const logout = async () => {
         await firebase.auth().signOut();

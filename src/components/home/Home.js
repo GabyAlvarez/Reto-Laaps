@@ -1,11 +1,12 @@
 import React from 'react'
-//import Navbar from '../navbar/Navbar'
-import Menu from '../navbar/Menu'
+//import Menu from '../navbar/Menu'
+import Navbar from '../navbar/Navbar'
 
 const Home = () => {
     return (
         <div>
-            <Menu />
+            <Navbar />
+            {/* <Menu /> */}
             <h2>Y los routes</h2>
         </div>
     )

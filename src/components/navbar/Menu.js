@@ -11,6 +11,7 @@ const Menu = () => {
         history.push("/");
         window.location.reload(true)
     }
+    
     return (
         <div>
             <button onClick = { e =>logout(e)} className="btn-menu">Logout</button>
