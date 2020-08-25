@@ -78,6 +78,10 @@ const DragOutFunction = () => {
             <Link to="/dragout">
                 <button>Enviar</button>
             </Link>
+
+            <Link to="/maps">
+                <button>Maps</button>
+            </Link>
         </div>
     );
 }
