@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 //import  from '../assets/image/logo.png';
 // import {useFirebaseApp, useUser} from 'reactfire';
 import {useFirebaseApp} from 'reactfire';
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { setUserStorage, getUserStorage } from '../../Commons/userUtils';
 
 const Login = ({setIsLoggin, setHaveAcount}) => {
