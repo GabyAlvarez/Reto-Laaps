@@ -1,13 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import UpdateUserProfile from '../src/components/userProfile/UpdateUserProfile'
-import 'firebase/firestore'
+import React, {Fragment, useState} from 'react';
+import 'firebase/firestore';
+import 'firebase/auth';
+import Login from './components/login/Login';
+import CreateCount from './components/login/CreateCount';
+import Home from './components/home/Home';
+import { getUserStorage } from './Commons/userUtils'
+
 
 function App() {
+
+  const [haveAcount, setHaveAcount] = useState(false);
+  const [isLoggin, setIsLoggin] = useState(false);
+
   return (
-    <UpdateUserProfile/>
+    <Fragment>
+      {
+        isLoggin ? <Home /> : haveAcount ? <Login setHaveAcount={setHaveAcount} setIsLoggin={setIsLoggin}/> : 
+        <CreateCount setHaveAcount={setHaveAcount} setIsLoggin={setIsLoggin}/> 
+      }
+
+    </Fragment>
   );
 }
-
 export default App;
