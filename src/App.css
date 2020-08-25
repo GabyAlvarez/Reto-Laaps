@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.imgDragOut{
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.endSessionDrag{
+  margin-top: 190px;
+}
