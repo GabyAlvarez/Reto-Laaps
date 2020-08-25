@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/css/menu.css';
 
 
 const DragOutFunction = () => {
 
-    document.addEventListener('DOMContentLoaded', () => {
-
+    useEffect(() => {
         // Get all "navbar-burger" elements
         const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
@@ -28,8 +27,7 @@ const DragOutFunction = () => {
                 });
             });
         }
-
-    });
+    })
 
     return (
         <div>

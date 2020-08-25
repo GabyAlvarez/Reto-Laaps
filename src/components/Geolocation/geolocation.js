@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+// import { Map, GoogleApiWrapper } from 'google-maps-react';
 import {
     withGoogleMap,
     withScriptjs,
@@ -11,12 +12,15 @@ function Map() {
         <GoogleMap
             defaultZoom={15}
             defaultCenter={{ lat: 45.4211, lng: -75.6903 }}
+        // defaultCenter={{ lat: -99.2288, lng: 18.4816 }}
         >
         </GoogleMap>
     );
 }
 
 const MapWrapped = withScriptjs(withGoogleMap(Map));
+
+
 
 function Geolocation() {
     return (
