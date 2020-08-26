@@ -1,68 +1,73 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+El nombre de la aplicación es:
+    **Laaps**  
+___    *Cuidamos lo que más te importa* ___
+<img src='readme-files/logo-laaps-ejemplo.jpg'>
+<br>
 
-## Available Scripts
+> Este reto nos lo trae una startup: Laaps un emprendimiento dedicado al lavado de autos a domicilio sin utilizar agua.
 
-In the project directory, you can run:
+>En Laaps buscan transformar su negocio en un negocio escalable y con más visibilidad. 
+El requerimiento es diseñar y desarrollar una webapp (tipo Uber) a través de la cual los usuarios puedan fácilmente acceder y pedir el servicio de lavado de auto determinando la ubicación a través de algún servicio de geolocalización, y al mismo tiempo puedan saber quién lavará su auto, cuánto tiempo tomará...
 
-### `npm start`
+ __SI  QUIERES VER CÓMO FUNCIONA LA APP ENTRA A ESTE LINK:__ 
+Debes tener en cuenta que la app por los momentos está diseñada en mobile first **Galaxy S5**, por lo que cuando entres al link da click al boton derecho, seleccionas inspeccionar y en en el select que dice RESPONSIVE selecciona **Galaxy S5**.
+<br>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+https://laaps-11b08.web.app/
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<br>
+ 
+ 
+ 
+  |  **Herramientas y tecnologías usadas en la app**     | 
+| :-------------: |
+|Figma |
+| CSS |
+|Materialize|
+|Mapbox-Geolocalización|
+| Javascript|
+|React JS|
+|Firebase|
+|Git & Github|
+ 
+**¿Qué es laaps?**
+Emprendimiento dedicado al lavado de autos a domicilio
+Sin agua
+Preocupados por el medio ambiente
+ 
+ **Desarrollo y planificación de la app**
+ 
+**1-** Con la aplicación para proyectos de diseño *FIGMA*, iniciamos realizando la versión esquemática de lo que fue nuestra idea, planeando así previamente la estructura y los elementos de la página web.
 
-### `npm test`
+<img src='readme-files/anigif-wireframe'>
+<br> 
+**2-** Fue el diseño final de lo que sería *Laaps* donde definimos paleta de colores, tipografía y en general el flujo de navegación de la aplicación. De esta manera poder tener una visión más detallada, precisa y global de los contenidos necesarios plasmando así el resultado final de una versión simulada en alta fidelidad.
+<br>
+<img src='readme-files/anigif-onboarding'>
+<br> 
+<img src='readme-files/anigif-login'>
+<br> 
+<img src='readme-files/anigif-login-two'>
+<br> 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Test de usabilidad con usuarios**
 
-### `npm run build`
+ Al inicio del diseño de la aplicacion construimos una idea de acuerdo a las encuestras realizadas y creyendo que habíamos tomando buenas decisiones sin embargo al recibir los comentarios de parte de los usuarios a quien le solicitamos el testeo de usabilidad de la app, tomando en cuenta sus recomendaciones decidimos aplicar mejoras, volviendo a solicitar feedback y dejando al usuario satisfecho con lo que implementamos en la app.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+ **¿Cómo funciona la app**
+ 
+ _Tendrá tres secciones:_
+ 
+ >La primera es para el área del usuario,podrá acceder de manera fácil registrándo su cuenta, una vez logueado podrá ver los servicios que ofrecemos, está lo opión de que realice pagos por medio de tarjeta de crédito teniendo opción de guardar o no los datos,haciendo que se sienta seguro con nosotros, puede ver los datos de la persona que va a lavar su coche y hacer un seguimiento preciso desde que solicita el servicio, viendo la ruta por medio de geolocalización siguiendo el inicio del camino hasta que le notificamos que el trabajo ya fue realizado.
+ 
+ >La segunda es para el socio/trabajador, en donde también podrá loguearse con su nombre de usuario y contraseña, podrá ver distintas opciones de ruta para dar el servivio, y una vez que seleccione alguna, verá los datos de la persona, los datos del coche que va a lavar,notificar cada etapa del servicio,visualizar sus ganancias y calificaciones.
+ 
+ >La tercera es para la parte administrativa y de ventas, allí podrán:
+ -Información del servicio por medio de una App.
+ -Tener visibilidad de solicitudes y empleados.
+ -Generar reportes de acuerdo a las necesidades.
+ -Visibilidad de ganancias.
+ 
+<br>
+<img src='readme-files/lapps-user-opinion,jpg'>
+<br> 
