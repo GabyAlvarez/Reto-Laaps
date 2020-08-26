@@ -8,8 +8,8 @@ const DragMaterialize = () => {
 
 
     document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.sidenav');
-        var instances = M.Sidenav.init(elems);
+        let elems = document.querySelectorAll('.sidenav');
+        let instances = M.Sidenav.init(elems);
     });
 
 

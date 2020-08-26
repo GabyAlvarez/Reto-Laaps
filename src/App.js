@@ -4,6 +4,10 @@ import './App.css';
 import DragOutFunction from './components/DragOutFunction/dragOut';
 import DragMaterialize from './components/DragMaterialize/dragmaterialize';
 import Geolocation from './components/Geolocation/geolocation';
+import Layout from './componentsGeo/Map/Layout';
+
+
+
 
 function App() {
   return (
@@ -19,6 +23,10 @@ function App() {
 
         <Route exact path="/maps">
           <Geolocation />
+        </Route>
+
+        <Route exact path="/mapbox">
+          <Layout />
         </Route>
 
       </Switch>
