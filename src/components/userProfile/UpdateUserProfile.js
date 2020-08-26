@@ -118,6 +118,9 @@ function UpdateUserProfile() {
       console.log(userFilter[0])
       if(userFilter[0].picture){
          setPictureUri(userFilter[0].picture)
+      }
+      if(userFilter[0].phone){
+        setPhone(userFilter[0].phone);
       }   
     }
   
@@ -144,23 +147,32 @@ function UpdateUserProfile() {
         accept="image/*"
         onChange={()=>updatePicture(setPictureUri)}  
       /><br/>
-      <label for="username">Nombre:</label> <br/>
-      <input type="text" id="username" value={userData.name}></input><br/>
-      <label for="mail">Correo:</label> <br/>
-      <input type="text" id="mail" value={userData.email}></input><br/>
-      <label for="phone">Teléfono:</label> <br/>
-      <input 
-        type="text" 
-        id="phone" 
-        onChange={(e)=>{
-          if(e.target.value.match(/\d/gi) &&  e.target.value.length <= 10){
-            setPhone(e.target.value);
-          }else{
-            setPhone(phone.slice(0,));
-          }
-        }}
-        value={phone}         
-      ></input><br/>
+      <div>
+        <label className="label" for="username">Nombre:</label> <br/>
+        <input type="text" id="username" value={userData.name}></input>
+      <div>
+      <br/>
+      </div>
+        <label className="label" for="mail">Correo:</label> <br/>
+        <input type="text" id="mail" value={userData.email}></input><br/>
+      <div>
+      <br/>
+      </div>
+        <label className="label" for="phone">Teléfono:</label> <br/>
+        <input 
+          type="text" 
+          id="phone" 
+          onChange={(e)=>{
+            if(e.target.value.match(/\d/gi) &&  e.target.value.length <= 10){
+              setPhone(e.target.value);
+            }else{
+              setPhone(phone.slice(0,));
+            }
+          }}
+          value={phone}         
+        ></input>
+      </div>        
+      <br/>
       <input 
         type="button" 
         value="Guardar"
