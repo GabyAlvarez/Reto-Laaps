@@ -10,11 +10,15 @@ const styles = {
 
 
 const MapboxGLMap = () => {
-    const midpoint = (lat1, long1, lat2, long2, per) => { return [lat1 + (lat2 - lat1) * per, long1 + (long2 - long1) * per]; }
+
+
+    // const midpoint = (lat1, long1, lat2, long2, per) => {
+    //     let per = 0.2 for 20 % return;
+    //      [lat1 + (lat2 - lat1) * per, long1 + (long2 - long1) * per]; }
 
     const [map, setMap] = useState(null);
     const mapContainer = useRef(null);
-    midpoint();
+
     useEffect(() => {
         mapboxgl.accessToken = "pk.eyJ1IjoiZGlhbnllbGFtYWxkb25hZG8iLCJhIjoiY2tlYWF0dHVlMHppNzJyazB4NW93bWVwbCJ9.Ek9X_CGe_dHZar18cG6UDw";
 
@@ -25,7 +29,6 @@ const MapboxGLMap = () => {
                     'type': 'Feature',
                     'properties': {
                         'image': 'assets/eco-car.png',
-                        'message': 'Conductor En camino',
                         'iconSize': [60, 60]
                     },
                     'geometry': {
@@ -37,7 +40,6 @@ const MapboxGLMap = () => {
                     'type': 'Feature',
                     'properties': {
                         'image': 'assets/parking-car.png',
-                        'message': 'Tu ubicación',
                         'iconSize': [60, 60]
                     },
                     'geometry': {
@@ -65,20 +67,30 @@ const MapboxGLMap = () => {
                 el.style.width = marker.properties.iconSize[0] + 'px';
                 el.style.height = marker.properties.iconSize[1] + 'px';
 
-
-                el.addEventListener('click', function () {
-                    window.alert(marker.properties.message);
-                });
-
                 // add marker to map
                 new mapboxgl.Marker(el)
                     .setLngLat(marker.geometry.coordinates)
                     .addTo(map);
             });
 
+
+            let partner = new mapboxgl.Popup({ closeOnClick: true })
+                .setLngLat([-99.1784, 19.4132])
+                .setHTML('<span className="popup">Socio en camino</span>')
+                .addTo(map);
+
+
+            let client = new mapboxgl.Popup({ closeOnClick: true })
+                .setLngLat([-99.1518741, 19.4357993])
+                .setHTML('<span className="popup">Tu ubicación</span>')
+                .addTo(map);
+
+
+
             map.on("load", () => {
                 setMap(map);
                 map.resize();
+
             });
         };
 

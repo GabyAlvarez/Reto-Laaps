@@ -45,3 +45,7 @@
 .endSessionDrag{
   margin-top: 190px;
 }
+span.popup{
+    margin: 0 auto;
+    font-size: 1.5em;
+}
