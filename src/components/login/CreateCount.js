@@ -36,10 +36,17 @@ const CreateCount = ({setHaveAcount,setIsLoggin}) => {
 
     const exitoCallback = async () => {
         // Guarda en la BDD
+        let uid = ('');
+        const user = firebase.auth().currentUser;
+        if (user != null) {
+            console.log(user.uid);
+            uid = user.uid 
+        }
         await db.collection("Users").add({
             name: name,
             email: email,
-            rol: "cliente"
+            rol: "cliente",
+            uid: uid
         }).then(() => {
               console.log("Insert in BDD end. ")
         });

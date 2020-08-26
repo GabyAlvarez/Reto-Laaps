@@ -10,7 +10,7 @@ const Home = () => {
             <Navbar />
             {/* <Menu /> */}
             <h2>Y los routes</h2>
-            {/*<UpdateUserProfile/>*/}
+           {/* <UpdateUserProfile/>*/}
             <UpdateCarData/>
         </div>
     )
