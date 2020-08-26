@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFirebaseApp } from 'reactfire';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import 'materialize-css';
 
 const Menu = () => {
@@ -15,16 +15,20 @@ const Menu = () => {
     
     return (
         <div>
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">Logo</a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="sass.html">Sass</a></li>
-                        <li><a href="badges.html">Components</a></li>
-                        <li><a href="collapsible.html">JavaScript</a></li>
-                    </ul>
-                </div>
-            </nav>
+            <ul className="right hide-on-med-and-down">
+            <Link to="/">
+                <li><a className="black-text" href="#">Inicio</a></li>      
+            </Link>
+            <Link to="/UpdateUserProfile">
+                <li><a className="black-text" href="#">Mi perfil</a></li>      
+            </Link>
+            <Link to="/UpdateCardData">
+                <li><a className="black-text" href="#">Mi auto</a></li>      
+            </Link>
+            <Link to="/Pendiente">
+                <li><a className="black-text" href="#">Mis servicios</a></li>      
+            </Link>
+            </ul>
             <button onClick = { e =>logout(e)} className="btn-menu">Logout</button>
         </div>
     )

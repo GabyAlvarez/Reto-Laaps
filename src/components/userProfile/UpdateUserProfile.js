@@ -3,7 +3,7 @@ import firebase from '../../config/firebaseConfig'
 import 'firebase/firestore'
 import 'firebase/storage'
 import './userProfile.css'
-import imageIcon from './images/BotonSubirImg.png'
+import imageIcon from '../../assets/images/BotonSubirImg.png'
 
 const db = firebase.firestore();
 
