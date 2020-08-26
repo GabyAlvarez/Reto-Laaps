@@ -39,15 +39,15 @@ Preocupados por el medio ambiente
  
 **1-** Con la aplicación para proyectos de diseño *FIGMA*, iniciamos realizando la versión esquemática de lo que fue nuestra idea, planeando así previamente la estructura y los elementos de la página web.
 
-<img src='readme-files/anigif-wireframe'>
+<img src='readme-files/anigif-wireframe.gif'>
 <br> 
 **2-** Fue el diseño final de lo que sería *Laaps* donde definimos paleta de colores, tipografía y en general el flujo de navegación de la aplicación. De esta manera poder tener una visión más detallada, precisa y global de los contenidos necesarios plasmando así el resultado final de una versión simulada en alta fidelidad.
 <br>
-<img src='readme-files/anigif-onboarding'>
+<img src='readme-files/anigif-onboarding.gif'>
 <br> 
-<img src='readme-files/anigif-login'>
+<img src='readme-files/anigif-login.gif'>
 <br> 
-<img src='readme-files/anigif-login-two'>
+<img src='readme-files/anigif-login-two.gif'>
 <br> 
 
 **Test de usabilidad con usuarios**
@@ -69,5 +69,5 @@ Preocupados por el medio ambiente
  -Visibilidad de ganancias.
  
 <br>
-<img src='readme-files/lapps-user-opinion,jpg'>
+<img src='readme-files/lapps-user-opinion.jpg'>
 <br> 
