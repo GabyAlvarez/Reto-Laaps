@@ -8,20 +8,12 @@ const styles = {
     position: "absolute"
 };
 
-
 const MapboxGLMap = () => {
-
-
-    // const midpoint = (lat1, long1, lat2, long2, per) => {
-    //     let per = 0.2 for 20 % return;
-    //      [lat1 + (lat2 - lat1) * per, long1 + (long2 - long1) * per]; }
-
     const [map, setMap] = useState(null);
     const mapContainer = useRef(null);
 
     useEffect(() => {
         mapboxgl.accessToken = "pk.eyJ1IjoiZGlhbnllbGFtYWxkb25hZG8iLCJhIjoiY2tlYWF0dHVlMHppNzJyazB4NW93bWVwbCJ9.Ek9X_CGe_dHZar18cG6UDw";
-
         let geojson = {
             'type': 'FeatureCollection',
             'features': [
@@ -29,7 +21,7 @@ const MapboxGLMap = () => {
                     'type': 'Feature',
                     'properties': {
                         'image': 'assets/eco-car.png',
-                        'iconSize': [60, 60]
+                        'iconSize': [40, 40]
                     },
                     'geometry': {
                         'type': 'Point',
@@ -40,7 +32,7 @@ const MapboxGLMap = () => {
                     'type': 'Feature',
                     'properties': {
                         'image': 'assets/parking-car.png',
-                        'iconSize': [60, 60]
+                        'iconSize': [40, 40]
                     },
                     'geometry': {
                         'type': 'Point',
@@ -48,57 +40,78 @@ const MapboxGLMap = () => {
                     }
                 },
             ]
-
         };
 
         const initializeMap = ({ setMap, mapContainer }) => {
             const map = new mapboxgl.Map({
                 container: mapContainer.current,
-                style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+                style: "mapbox://styles/mapbox/streets-v11",
                 center: [-99.1784, 19.4132],
                 zoom: 11.5
             });
 
             geojson.features.forEach(function (marker) {
-                // create a DOM element for the marker
                 let el = document.createElement('img');
                 el.className = 'marker';
                 el.src = marker.properties.image;
                 el.style.width = marker.properties.iconSize[0] + 'px';
                 el.style.height = marker.properties.iconSize[1] + 'px';
-
-                // add marker to map
                 new mapboxgl.Marker(el)
                     .setLngLat(marker.geometry.coordinates)
                     .addTo(map);
             });
-
 
             let partner = new mapboxgl.Popup({ closeOnClick: true })
                 .setLngLat([-99.1784, 19.4132])
                 .setHTML('<span className="popup">Socio en camino</span>')
                 .addTo(map);
 
-
             let client = new mapboxgl.Popup({ closeOnClick: true })
                 .setLngLat([-99.1518741, 19.4357993])
                 .setHTML('<span className="popup">Tu ubicación</span>')
                 .addTo(map);
 
-
-
             map.on("load", () => {
+
+                map.addSource('route', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'properties': {},
+                        'geometry': {
+                            'type': 'LineString',
+                            'coordinates': [
+                                [-99.1784, 19.4132],
+                                [-99.1518741, 19.4357993]
+                            ]
+                        }
+                    }
+                });
+
+                map.addLayer({
+                    'id': 'route',
+                    'type': 'line',
+                    'source': 'route',
+                    'layout': {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                    },
+                    'paint': {
+                        'line-color': '#5ED4F4',
+                        'line-width': 8
+                    }
+                });
+
                 setMap(map);
                 map.resize();
-
             });
+
         };
 
         if (!map) initializeMap({ setMap, mapContainer });
     }, [map]);
 
     return <div ref={el => (mapContainer.current = el)} style={styles} />;
-
 };
 
 export default MapboxGLMap;
