@@ -25,7 +25,7 @@ const Navbar = () => {
     return (
         <div>
             <nav>
-                <div className="nav-wrapper  green accent-1 black-text">
+                <div className="nav-wrapper   indigo accent-2 black-text">
                     <a href="#" data-target="mobile-demo" className="sidenav-trigger black-text"><i className="material-icons">menu</i></a>
                     <ul className="right hide-on-med-and-down">
                         <li><Link className="black-text" to="/">Inicio</Link></li>
