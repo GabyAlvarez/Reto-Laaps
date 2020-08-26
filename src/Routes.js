@@ -8,7 +8,7 @@ import Layout from './components/geolocation/Layout'
 const Routes = () => {
     return (
        <Switch>
-           <Route path="/mainView" component={MainView}/>
+           <Route path="/MainView" component={MainView}/>
            <Route path="/UpdateUserProfile" component={UpdateUserProfile}/>
            <Route path="/UpdateCardData" component={UpdateCardData}/>
            <Route path="/Services" component={Layout}/>

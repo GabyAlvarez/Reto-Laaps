@@ -20,7 +20,7 @@ const MapboxGLMap = () => {
                 {
                     'type': 'Feature',
                     'properties': {
-                        'image': 'assets/eco-car.png',
+                        'image': '../../assets/images/eco-car.png',
                         'iconSize': [40, 40]
                     },
                     'geometry': {
@@ -31,7 +31,7 @@ const MapboxGLMap = () => {
                 {
                     'type': 'Feature',
                     'properties': {
-                        'image': 'assets/parking-car.png',
+                        'image': '../../assets/images/parking-car.png',
                         'iconSize': [40, 40]
                     },
                     'geometry': {
