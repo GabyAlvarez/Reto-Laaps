@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-//import  from '../assets/image/logo.png';
-// import {useFirebaseApp, useUser} from 'reactfire';
 import {useFirebaseApp} from 'reactfire';
 import { useHistory } from "react-router-dom";
 import { setUserStorage, getUserStorage } from '../../Commons/userUtils';
+import styles from './createcount.module.css'
+import logo from '../../assets/images/Logo.png';
 
 const Login = ({setIsLoggin, setHaveAcount}) => {
     const history = useHistory();    
@@ -15,9 +15,12 @@ const Login = ({setIsLoggin, setHaveAcount}) => {
 
     const login = async () => {
         await firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(exitoLogin(email), () => {
-                console.log("Hubo un error al consultar en BDD")
-            });
+            .then(exitoLogin(email))
+            .catch(err => errorLogin(err))
+    }
+
+    const errorLogin = (err) => {
+        console.log("error"+err)
     }
 
     const exitoLogin = async (email) => {
@@ -35,13 +38,12 @@ const Login = ({setIsLoggin, setHaveAcount}) => {
                 console.log("Error getting documents: ", error);
         });
 
-        let rol = getUserStorage().rol
+        let rol = getUserStorage() ? getUserStorage().rol : "noLoginExito"
        
         switch(rol) {
             case "cliente":
                 console.log("Eres cliente")
-                history.push("/");
-                // history.push("/Products");
+                history.push("/MainView");
                 break;
             case "Trabajador":
                 console.log("Eres trabajador")
@@ -58,27 +60,48 @@ const Login = ({setIsLoggin, setHaveAcount}) => {
         } else {
             setUserStorage(null)
             setIsLoggin(false)
-        }
-        
+        } 
     });
 
     return ( 
-        <div className="login-container">
-            <div className="login-input">
-                <div className="logo-circle">
-                    {/* <img src={logoBurger} className="app-logo" alt="logo" /> */}
-                </div> 
-                
-                <input type="email" id="email" placeholder="Email" onChange={(ev) => setEmail(ev.target.value) } />
-                <input type="password" id="password" placeholder="Password" onChange={ (ev) => setPassword(ev.target.value) }/>
-               
-                <button className="btn-menu" onClick={login}>Login</button>
-                <p>¿No tienes cuenta?</p>
-                <button className="btn-menu"
-                onClick={() => setHaveAcount(false)} >Registrate</button>
+        <div className={styles.newAcountContainer}>
+            <div className="row">
+                <div className="col s8 offset-s2 m8  offset-m2" style={{textAlign: 'center'}}>
+                    <img src={logo} className={styles.logo} alt="logo" />
+                </div>
             </div>
+
+                <div className="row">
+                    <div className="col s8 offset-s2 m8  offset-m2" style={{textAlign: 'center'}}>
+                        <label for="username">Correo electronico:</label> <br/>
+                        <input type="email" id="email" className={styles.loginInput} onChange={(ev) => setEmail(ev.target.value) } />
+                    </div>
+                </div>
+                
+                <div className="row">
+                    <div className="col s8 offset-s2 m8  offset-m2" style={{textAlign: 'center'}}>
+                        <label for="username">Ccontraseña:</label> <br/>
+                        <input type="password" id="password" className={styles.loginInput} onChange={ (ev) => setPassword(ev.target.value) }/>
+                    </div>
+                </div>
+                
+                <div className="row">
+                    <div className="col s8 offset-s2 m8 offset-m2" style={{textAlign: 'center'}}>
+                        <button className={styles.btnNewUser} onClick={login}>Iniciar sesión</button>
+                        {/* <p>¿No tienes cuenta?</p> */}
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col s8 offset-s2  m8 offset-m2" style={{textAlign: 'center'}}>
+                        <button className={styles.btnText}
+                        onClick={() => setHaveAcount(false)} >Quiero registrarme</button>
+                    </div>
+                </div>
+
         </div>
-     );
+        
+    )
 }
  
 export default Login;

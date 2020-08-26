@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-//import logo from '../assets/image/logo.png';
-import {useFirebaseApp} from 'reactfire';
+import {useFirebaseApp, useUser} from 'reactfire';
 import  { setUserStorage, getUserStorage } from '../../Commons/userUtils'
 import { useHistory } from 'react-router-dom';
+import styles from './createcount.module.css';
+import logo from '../../assets/images/Logo.png';
 
 const CreateCount = ({setHaveAcount,setIsLoggin}) => {
     const history = useHistory();  
     const firebase = useFirebaseApp();
     const db = firebase.firestore();
+    
 
     const [name, setName] = useState('');
     const[ email, setEmail] = useState('');
@@ -36,10 +38,17 @@ const CreateCount = ({setHaveAcount,setIsLoggin}) => {
 
     const exitoCallback = async () => {
         // Guarda en la BDD
+        let uid = ('');
+        const user = firebase.auth().currentUser;
+        if (user != null) {
+            console.log(user.uid);
+            uid = user.uid 
+        }
         await db.collection("Users").add({
             name: name,
             email: email,
-            rol: "cliente"
+            rol: "cliente",
+            uid: uid
         }).then(() => {
               console.log("Insert in BDD end. ")
         });
@@ -59,11 +68,16 @@ const CreateCount = ({setHaveAcount,setIsLoggin}) => {
             });  
 
         let rol = getUserStorage().rol
+        let order = await db.collection("Users").doc(getUserStorage().id)
+
+        order.get().then((doc) => {
+            console.log(doc.data())
+        });
 
         switch(rol) {
             case "cliente":
                 console.log("Eres cliente")
-                // history.push("/Products");
+                history.push("/MainView");
                 break;
             case "Trabajador":
                 console.log("Eres trabajador")
@@ -85,18 +99,55 @@ const CreateCount = ({setHaveAcount,setIsLoggin}) => {
     });
     
     return (
-        <div className="login-container">
-            <div className="login-input">
-                <div className="logo-circle">
-                    {/* <img src={logo} className="logo" alt="logo" /> */}
-                </div> 
-                <input type="text" id="name" placeholder="Nombre" onChange={(ev) => setName(ev.target.value) } />
-                <input type="email" id="email" placeholder="Email" onChange={(ev) => setEmail(ev.target.value) } />
-                <input type="password" id="password" placeholder="Password" onChange={ (ev) => setPassword(ev.target.value) }/>
-                <input type="password" id="confirmPassword" placeholder="Confirm Password" onChange={ (ev) => setConfirmPassword(ev.target.value) }/>
-                <button className="btn-newUser" onClick={validateFields}>Create Account</button>
-                <button className="btn-newUser" onClick= {() => setHaveAcount(true) } > Inicia sesion</button>
+        <div className={styles.newAcountContainer} id="createCount">
+            <div className="row">
+                <div className="col s8 offset-s2 m8  offset-m2" style={{textAlign: 'center'}}>
+                    <img src={logo} className={styles.logo} alt="logo" />
+                </div>
             </div>
+                
+                <div className="row">
+                    <div className="col s8 offset-s2 m8  offset-m2" style={{textAlign: 'center'}}>
+                        <label for="username">Nombre:</label> <br/>
+                        <input type="text" className={styles.loginInput} id="name" onChange={(ev) => setName(ev.target.value) } />
+                    </div>
+                </div>
+                
+                <div className="row">
+                    <div className="col s8 offset-s2 m8  offset-m2" style={{textAlign: 'center'}}>
+                        <label for="username">Correo:</label> <br/>
+                        <input type="email" className={styles.loginInput} id="email" onChange={(ev) => setEmail(ev.target.value) } />
+                    </div>
+                </div>
+               
+                <div className="row">
+                    <div className="col s8 offset-s2 m8 offset-m2" style={{textAlign: 'center'}}>
+                        <label for="username">Contraseña:</label> <br/>
+                        <input type="password" className={styles.loginInput} id="password" onChange={ (ev) => setPassword(ev.target.value) }/>
+                    </div>
+                </div>
+
+               
+                <div className="row">
+                    <div className="col s8 offset-s2 m8 offset-m2" style={{textAlign: 'center'}}>
+                        <label for="username">Confirmar contraseña:</label> <br/>
+                        <input type="password" className={styles.loginInput} id="confirmPassword" onChange={ (ev) => setConfirmPassword(ev.target.value) }/>
+                    </div>
+                </div>
+                
+                <div className="row">
+                    <div className="col s6 offset-s3  m8  offset-m2" style={{textAlign: 'center'}}>
+                        <button className={styles.btnNewUser} onClick={validateFields}>Registrarme</button>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col s6 offset-s3  m8  offset-m2" style={{textAlign: 'center'}}>
+                        <button className={styles.btnText} onClick= {() => setHaveAcount(true) } >Ya tengo cuenta</button>
+                    </div>
+                </div>
+
+                 
         </div>
     )
 }

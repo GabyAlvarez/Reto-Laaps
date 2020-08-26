@@ -1,0 +1,52 @@
+
+
+.update-user-profile{
+  //border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .user-picture-input{
+    display: none;
+  }
+  .user-picture{
+    align-self: center;
+    img{
+      width: 125px;
+      height: 125px;
+      border-radius: 50%;
+    }
+  }
+
+  div{
+    //border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    //width: 125px;
+  }
+
+  .label{
+    margin-bottom: 0;
+    margin-left:53px ;
+
+  }
+
+  input[type=text]{
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 20px;
+    width: 242px;
+    height: 30px;
+    margin: auto;
+    margin-top:0;
+    padding-left: 10px;
+  }
+
+  .save-btn{
+    align-self: center;
+    width: 170px;
+    height: 36px;
+    border-radius: 20px;
+    background-color: #4F6CFB;
+    border: none;
+  }
+  
+}

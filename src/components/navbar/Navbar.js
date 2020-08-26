@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFirebaseApp } from 'reactfire';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import styles from './nav.module.css'
+import logo from '../../assets/images/Logo.png';
 
 
 const Navbar = () => {
-
-    const firebase= useFirebaseApp();
+    const firebase = useFirebaseApp();
     const history = useHistory();
 
-    document.addEventListener('DOMContentLoaded', function () {
+    useEffect(() => {
         var elems = document.querySelectorAll('.sidenav');
         var instances = M.Sidenav.init(elems);
     });
@@ -25,26 +26,35 @@ const Navbar = () => {
     return (
         <div>
             <nav>
-                <div className="nav-wrapper  green accent-1 black-text">
+                <div className="nav-wrapper   indigo accent-2 black-text">
                     <a href="#" data-target="mobile-demo" className="sidenav-trigger black-text"><i className="material-icons">menu</i></a>
                     <ul className="right hide-on-med-and-down">
-                        <li><a className="black-text" href="sass.html">Inicio</a></li>
-                        <li><a className="black-text" href="badges.html">Mi perfil</a></li>
-                        <li><a className="black-text" href="collapsible.html">Mis autos</a></li>
-                        <li><a className="black-text" href="collapsible.html">Ayuda</a></li>
-                        <li><a className="black-text" href="mobile.html">Cerrar sesión</a></li>
+                        <li><Link className="black-text" to="/MainView">Inicio</Link></li>
+
+                        <li><Link className="black-text" to="/UpdateUserProfile">Mi perfil</Link></li>
+
+                        <li><Link className="black-text" to="/UpdateCardData">Mi auto</Link></li>
+
+                        <li> <Link className="black-text" to="/Services">Mis servicios</Link></li>
+
+                        <li><button onClick={e => logout(e)} className={styles.btnText}>Logout</button></li>
                     </ul>
                 </div>
             </nav>
 
             <ul className="sidenav" id="mobile-demo">
-                <li className="center-align"><img className="imgDragOut" src="assets/logo-laaps-ejemplo.jpg" alt="logo-laaps" width="210" /></li>
-                <li><a href="sass.html">Inicio</a></li>
-                <li><a href="badges.html">Mi perfil</a></li>
-                <li><a href="collapsible.html">Mis autos</a></li>
-                <li><a href="collapsible.html">Ayuda</a></li>
-                <li className="endSessionDrag"><a href="mobile.html">Cerrar sesión</a></li>
+                <li className="center-align"><img src={logo} className={styles.logo} alt="logo" /></li>
+                <li><Link className="black-text" to="/MainView">Inicio</Link></li>
+
+                <li><Link className="black-text" to="/UpdateUserProfile">Mi perfil</Link></li>
+
+                <li><Link className="black-text" to="/UpdateCardData">Mi auto</Link></li>
+
+                <li> <Link className="black-text" to="/Services">Mis servicios</Link></li>
+
+                <li className="endSessionDrag"><button onClick={e => logout(e)} className={styles.btnText}>Logout</button></li>
             </ul>
+
         </div>
     );
 }
