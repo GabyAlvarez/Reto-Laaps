@@ -3,18 +3,18 @@ import { useFirebaseApp } from 'reactfire';
 import { useHistory } from "react-router-dom";
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
-import M from 'materialize-css/dist/js/materialize.min.js';
+//import M from 'materialize-css/dist/js/materialize.min.js';
+import styles from './nav.module.css'
 
 
 const Navbar = () => {
-
     const firebase= useFirebaseApp();
     const history = useHistory();
 
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.sidenav');
-        var instances = M.Sidenav.init(elems);
-    });
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     var elems = document.querySelectorAll('.sidenav');
+    //     var instances = M.Sidenav.init(elems);
+    // });
 
     const logout = async () => {
         await firebase.auth().signOut();
@@ -30,9 +30,9 @@ const Navbar = () => {
                     <ul className="right hide-on-med-and-down">
                         <li><a className="black-text" href="sass.html">Inicio</a></li>
                         <li><a className="black-text" href="badges.html">Mi perfil</a></li>
-                        <li><a className="black-text" href="collapsible.html">Mis autos</a></li>
+                        <li><a className="black-text" href="collapsible.html">Mis servicios</a></li>
                         <li><a className="black-text" href="collapsible.html">Ayuda</a></li>
-                        <li><a className="black-text" href="mobile.html">Cerrar sesión</a></li>
+                        <li><button onClick = { e =>logout(e)} className={styles.btnText}>Logout</button></li>
                     </ul>
                 </div>
             </nav>
@@ -41,10 +41,11 @@ const Navbar = () => {
                 <li className="center-align"><img className="imgDragOut" src="assets/logo-laaps-ejemplo.jpg" alt="logo-laaps" width="210" /></li>
                 <li><a href="sass.html">Inicio</a></li>
                 <li><a href="badges.html">Mi perfil</a></li>
-                <li><a href="collapsible.html">Mis autos</a></li>
+                <li><a href="collapsible.html">Mis servicios</a></li>
                 <li><a href="collapsible.html">Ayuda</a></li>
-                <li className="endSessionDrag"><a href="mobile.html">Cerrar sesión</a></li>
+                <li className="endSessionDrag"><button onClick = { e =>logout(e)} className="btn-menu">Logout</button></li>
             </ul>
+
         </div>
     );
 }

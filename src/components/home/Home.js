@@ -1,5 +1,6 @@
 import React from 'react'
-//import Menu from '../navbar/Menu'
+import Menu from '../navbar/Menu'
+//import UpdateUserProfile from '../userProfile/UpdateUserProfile'
 import Navbar from '../navbar/Navbar'
 
 const Home = () => {
@@ -7,7 +8,8 @@ const Home = () => {
         <div>
             <Navbar />
             {/* <Menu /> */}
-            <h2>Y los routes</h2>
+            <h1>Estas en home</h1>
+            {/* <UpdateUserProfile/> */}
         </div>
     )
 }
