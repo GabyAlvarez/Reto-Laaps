@@ -1,109 +1,175 @@
 import React, {useState, useEffect} from 'react'
 import firebase from '../../config/firebaseConfig'
 import 'firebase/firestore'
+import 'firebase/storage'
+import './userProfile.css'
+import imageIcon from './images/BotonSubirImg.png'
+
+const db = firebase.firestore();
+
+function fecthUserData(phone,uid, setUserDataId, pictureUri, pictureProfile, setPictureProfile){
+  console.log('hola');
+  
+  db.collection("Users").where("uid", "==", uid).get()
+  .then((querySnapshot)=> {
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+      setUserDataId(doc.id);
+      updateUserData(phone,doc.id, pictureUri, pictureProfile, setPictureProfile);
+    });
+  })
+  .catch(function(error) {
+    console.log("Error getting documents: ", error);
+  }); 
+}
+
+function updateUserData(phone, userDocId, pictureFile, pictureProfile, setPictureProfile){
+  
+  if(pictureFile){
+    const storage = firebase.storage();
+    const imgRef = storage.ref('images');
+    const date = new Date();
+    const idImg = date.getTime();
+    const token =  idImg+'_'+pictureFile.name
+    console.log(token);
+    imgRef.child(token).put(pictureFile)
+    .then(snap => {
+      return snap.ref.getDownloadURL();
+    })
+    .then(link => {
+      console.log(link);
+      if(phone.length == 10){
+        console.log('voy a subir phone');
+        console.log(phone, link);
+        db.collection('Users').doc(userDocId).update({
+          phone:phone,
+          picture: link
+        })
+        .then(()=>{
+          console.log('num enviada correctamente')
+        }).catch(err=>{
+          console.log('error al subir num',err);
+        })
+      }else{
+        console.log('Número de teléfono no válido');
+      }
+    })
+    .catch((error)=> {
+      console.log("Error al guardar imagen: " + error);
+    });
+  }else{
+    if(phone.length == 10){
+      console.log('voy a subir phone');
+      
+      db.collection('Users').doc(userDocId).update({
+        phone:phone,
+        picture: ''
+      })
+      .then(()=>{
+        console.log('num enviada correctamente')
+      }).catch(err=>{
+        console.log('error al subir num',err);
+      })
+    }else{
+      console.log('Número de teléfono no válido');
+    }
+  }
+}
 
 function UpdateUserProfile() {
   const [userData, setUserData] = useState('');
   const [phone, setPhone] = useState('');
-  const [pictureUri, setPictureUri] = useState('');
-
-  function updateUserData(phone){
-    console.log('hola');
-    
-    if(phone.length == 10){
-      console.log('voy a subir phone');
-      const db = firebase.firestore();
-      db.collection('users').doc('oAhnrUaxcLYFpYl7tCz6').update({
-        phone:phone
-      }).then(()=>{
-        console.log('num enviada correctamente')
-      }).catch(err=>{
-        console.log('error al subir num',err);
-       })
-    }else{
-        console.log('Número de teléfono no válido');
-    }
-  
-  }
+  const [pictureUri, setPictureUri] = useState(imageIcon);
+  const [pictureFile, setPictureFile] = useState('');
+  const [pictureProfile, setPictureProfile] = useState('');
+  const [uid, setUid] = useState('');
+  const [userDataId, setUserDataId] = useState('');
   
   function updatePicture(setPictureUri){
     console.log('foto');
-    const userPicture = document.getElementById('userPicture');
-    console.log(userPicture.files);
   
+    const userPicture = document.getElementById('userPicture');
+    console.log(userPicture.files[0]);
+    setPictureFile(userPicture.files[0]);
     if (userPicture.files.length != 0){
+     
       let reader = new FileReader();
       reader.onload = function () {
         setPictureUri(reader.result);
-        
-        /*
-        let removeImg = document.getElementsByClassName("remove-img")[0];
-        removeImg.onclick = function() {
-          let image = ``
-          imagesContainer.innerHTML = image;
-          imagePost.value = null;
-          console.log("Usuario quitó img:" + imagePost.value);
-          validate();
-        }*/
-  
       }
       reader.readAsDataURL(userPicture.files[0]);
      
     }else{
       console.log('no foto');
+      setPictureUri(imageIcon);
+      setPictureFile('');
     }
+    
   }
+  
+  useEffect(() => {
+    const fetchData = async (userId) => {
+      //const db = firebase.firestore();
+      const data = await db.collection('Users').get()
+      const users = data.docs.map(doc =>  doc.data())
+      const userFilter = users.filter(user => user.uid === userId)
+      setUserData(userFilter[0])
+      setUid(userId);
+      console.log(userFilter[0])
+      if(userFilter[0].picture){
+         setPictureUri(userFilter[0].picture)
+      }   
+    }
+  
+    const user = firebase.auth().currentUser;
+    if (user != null) {
+      console.log(user.uid);
+      const userId = user.uid 
+      fetchData(userId)
+    }
 
-    useEffect(() => {
-      const fetchData = async () => {
-        const db = firebase.firestore();
-        const data = await db.collection('users').get()
-        const users = data.docs.map(doc =>  doc.data())
-        const userFilter = users.filter(user => user.id === 1)
-        setUserData(userFilter[0])
-        //console.log(userFilter[0])
-      }
-      fetchData()
-    },[])
 
-    return (
-        <div>
-          <label for="userPicture">f</label>
-          <input 
-          type="file" 
-          class="load-img" 
-          id="userPicture" 
-          name="img" 
-          accept="image/*"
-          onChange={()=>updatePicture(setPictureUri)}  
-          /><br/>
-          <img src={pictureUri} className="" alt="" title=""></img>
-          <label for="username">Nombre:</label> <br/>
-          <input type="text" id="username" value={userData.username}></input><br/>
-          <label for="mail">Correo:</label> <br/>
-          <input type="text" id="mail" value={userData.mail}></input><br/>
-          <label for="phone">Teléfono:</label> <br/>
-          <input 
-          type="text" 
-          id="phone" 
-          onChange={(e)=>{
-            if(e.target.value.match(/\d/gi) &&  e.target.value.length <= 10){
-              setPhone(e.target.value);
-            }else{
-              setPhone(phone.slice(0,));
-            }
-          }}
-          value={phone}         
-          ></input><br/>
-          <input 
-          type="button" 
-          value="Guardar"
-          onClick={()=>updateUserData(phone)}
-          >
-          </input>
+  },[])
 
-        </div>
-    )
+  return (
+    <div className="update-user-profile">
+      <label for="userPicture" className='user-picture'>
+        <img src={pictureUri} className="" alt="" title=""></img>
+      </label>
+      <input 
+        type="file" 
+        className="user-picture-input" 
+        id="userPicture" 
+        name="img" 
+        accept="image/*"
+        onChange={()=>updatePicture(setPictureUri)}  
+      /><br/>
+      <label for="username">Nombre:</label> <br/>
+      <input type="text" id="username" value={userData.name}></input><br/>
+      <label for="mail">Correo:</label> <br/>
+      <input type="text" id="mail" value={userData.email}></input><br/>
+      <label for="phone">Teléfono:</label> <br/>
+      <input 
+        type="text" 
+        id="phone" 
+        onChange={(e)=>{
+          if(e.target.value.match(/\d/gi) &&  e.target.value.length <= 10){
+            setPhone(e.target.value);
+          }else{
+            setPhone(phone.slice(0,));
+          }
+        }}
+        value={phone}         
+      ></input><br/>
+      <input 
+        type="button" 
+        value="Guardar"
+        className='save-btn'
+        onClick={()=>fecthUserData(phone,uid, setUserDataId, pictureFile, pictureProfile, setPictureProfile)}
+      >
+      </input>
+    </div>
+  )
 }
 
 export default UpdateUserProfile;

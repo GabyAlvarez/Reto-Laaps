@@ -1,0 +1,41 @@
+.update-user-profile {
+  border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.update-user-profile .user-picture-input {
+  display: none;
+}
+
+.update-user-profile .user-picture {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.update-user-profile .user-picture img {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+}
+
+.update-user-profile .save-btn {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  width: 170px;
+  height: 36px;
+  border-radius: 20px;
+  background-color: #4F6CFB;
+  border: none;
+}
+/*# sourceMappingURL=userProfile.css.map */

@@ -1,0 +1,29 @@
+
+
+.update-user-profile{
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .user-picture-input{
+    display: none;
+  }
+  .user-picture{
+    align-self: center;
+    img{
+      width: 125px;
+      height: 125px;
+      border-radius: 50%;
+    }
+  }
+  .save-btn{
+    align-self: center;
+    width: 170px;
+    height: 36px;
+    border-radius: 20px;
+    background-color: #4F6CFB;
+    border: none;
+  }
+  
+}
+
