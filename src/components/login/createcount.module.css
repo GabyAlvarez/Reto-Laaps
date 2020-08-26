@@ -4,9 +4,8 @@
 
 .logo {
     width: 160px !important;
-    margin-top: 20px;
-  }
-
+    margin: 20px 0px 30px;
+}
 
 .loginInput{
     background-color: transparent;

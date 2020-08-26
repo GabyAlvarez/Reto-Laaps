@@ -71,7 +71,7 @@ const CreateCount = ({setHaveAcount,setIsLoggin}) => {
         switch(rol) {
             case "cliente":
                 console.log("Eres cliente")
-                // history.push("/Products");
+                history.push("/MainView");
                 break;
             case "Trabajador":
                 console.log("Eres trabajador")

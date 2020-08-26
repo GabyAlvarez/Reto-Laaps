@@ -43,8 +43,7 @@ const Login = ({setIsLoggin, setHaveAcount}) => {
         switch(rol) {
             case "cliente":
                 console.log("Eres cliente")
-                history.push("/");
-                // history.push("/Products");
+                history.push("/MainView");
                 break;
             case "Trabajador":
                 console.log("Eres trabajador")
@@ -61,8 +60,7 @@ const Login = ({setIsLoggin, setHaveAcount}) => {
         } else {
             setUserStorage(null)
             setIsLoggin(false)
-        }
-        
+        } 
     });
 
     return ( 

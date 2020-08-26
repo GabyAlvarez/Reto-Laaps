@@ -16,7 +16,7 @@ const Menu = () => {
     return (
         <div>
             <ul className="right hide-on-med-and-down">
-            <Link to="/">
+            <Link to="/MainView">
                 <li><a className="black-text" href="#">Inicio</a></li>      
             </Link>
             <Link to="/UpdateUserProfile">
