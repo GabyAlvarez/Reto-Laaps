@@ -1,0 +1,22 @@
+.logo {
+    width: 150px !important;
+    margin: 15px 5px;
+}
+
+.card{
+    width: 250px !important;
+}
+
+.btnView{
+    width: 170px;
+    height: 36px;
+    background: #4F6CFB;
+    border-radius: 20px; 
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    border: 0px;
+    margin-top: 24px;
+    color: white;
+}

@@ -1,0 +1,52 @@
+.containerLogo{
+    display: flex;
+}
+
+.logo {
+    width: 160px !important;
+    margin: 20px 0px 30px;
+}
+
+.loginInput{
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.25) !important;
+    border-radius: 20px !important;
+    height: 30px !important;
+    width: 100%;
+    max-width: 245px;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+    margin: 10px 40px;
+    padding: 2px !important;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: box-shadow .3s, border .3s;
+    font-family: Montserrat !important;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.btnNewUser{
+    width: 170px;
+    height: 36px;
+    background: #4F6CFB;
+    border-radius: 20px; 
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    border: 0px;
+}
+
+.btnText{
+    width: 170px;
+    height: 36px;
+    background: transparent;
+    border-radius: 20px; 
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    border: 0px;
+}
